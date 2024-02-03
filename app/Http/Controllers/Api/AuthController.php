@@ -24,8 +24,17 @@ class AuthController extends Controller
         return $this->ok(
             'Authenticated',
             [
-                'token' => $user->createToken('API token for ' . $user->email)->plainTextToken
+                'token' => $user->createToken(
+                    'API token for ' . $user->email,
+                    ['*'],
+                    now()->addMonth())->plainTextToken
             ]
             );
+    }
+
+    public function logout(Request $request) {
+        $request->user()->currentAccessToken()->delete();
+
+        return $this->ok('');
     }
 }
