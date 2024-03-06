@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTicketRequest extends FormRequest
+class StoreTicketRequest extends BaseTicketRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,11 +32,5 @@ class StoreTicketRequest extends FormRequest
         }
 
         return $rules;
-    }
-
-    public function messages() {
-        return [
-            'data.attributes.status' => 'The data.attributes.status value is invalid. Please use A, C, H, or X.'
-        ];
     }
 }
