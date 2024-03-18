@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends BaseUserRequest
+class ReplaceUserRequest extends BaseUserRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,11 +21,13 @@ class UpdateUserRequest extends BaseUserRequest
      */
     public function rules(): array
     {
-        return [
-            'data.attributes.name' => 'sometimes|string',
-            'data.attributes.email' => 'sometimes|email',
-            'data.attributes.isManager' => 'sometimes|boolean',
-            'data.attributes.password' => 'sometimes|string',
+        $rules = [
+            'data.attributes.name' => 'required|string',
+            'data.attributes.email' => 'required|email',
+            'data.attributes.isManager' => 'required|boolean',
+            'data.attributes.password' => 'required|string',
         ];
+
+        return $rules;
     }
 }
